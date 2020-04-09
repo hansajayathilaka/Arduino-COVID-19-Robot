@@ -11,21 +11,22 @@ void turn(int left, int right, int straight, int back) {
       }
       break;
     case 'R':
-      if (left == 1){
+      if (right == 1){
         turnRight();
       } else {
         error = true;
       }
       break;
     case 'S':
-      if (left == 1){
+      if (straight == 1){
         turnStraight();
       } else {
         error = true;
       }
       break;
     case 'B':
-      if (left == 1){
+      if (back == 1){
+        atTheDoor();
         turnBack();
       } else {
         error = true;
