@@ -1,11 +1,11 @@
 int const turnDelay = 350;     //delay to make a 90 degrees turn
 
-void turn(int left, int right, int straight, int back) {
-  bool error = false;
+bool turn(bool left, bool right, bool straight, bool back, bool error) {
   switch (path_to_next_destination[junctionIndex]) {
     case 'L':
       if (left == 1){
         turnLeft();
+        junctionIndex++;
       } else {
         error = true;
       }
@@ -13,6 +13,7 @@ void turn(int left, int right, int straight, int back) {
     case 'R':
       if (right == 1){
         turnRight();
+        junctionIndex++;
       } else {
         error = true;
       }
@@ -20,12 +21,14 @@ void turn(int left, int right, int straight, int back) {
     case 'S':
       if (straight == 1){
         turnStraight();
+        junctionIndex++;
       } else {
         error = true;
       }
       break;
     case 'B':
       if (back == 1){
+        drive(0, 0);
         atTheDoor();
         turnBack();
       } else {

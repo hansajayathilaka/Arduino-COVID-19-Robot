@@ -96,7 +96,7 @@ void go() {
 
 
     if (error + left + right + straight + back != 0) {
-      turn(left, right, straight, back);
+      turn(left, right, straight, back, error);
     }
   }
 }

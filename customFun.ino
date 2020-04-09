@@ -3,7 +3,7 @@
 //                    {{{A}}}     {{{B}}}                    \\
 
 void updateVal() {
-  qtrrc.read(sensorValues);
+  qtraTest.read(sensorValues);
 }
 
 bool s(byte val) {
@@ -22,14 +22,13 @@ byte sumSensors() {
   return num;
 }
 
-long turnError() {
-  unsigned int sensors[NUM_SENSORS];
-  int position = qtrrc.readLine(sensors);
-  int error = position - 3500;
-  //  error = error / 500;
-  return (error);
-}
-
+//long turnError() {
+//  unsigned int sensors[NUM_SENSORS];
+//  int position = qtra.readLine(sensors);
+//  int error = position - 3500;
+//  //  error = error / 500;
+//  return (error);
+//}
 
 float distance () {
   float duration, distance;

@@ -1,21 +1,17 @@
 void drive(int lMoter, int rMoter){
   if(lMoter > 0){
-    digitalWrite(lf, HIGH);
-    digitalWrite(lb, LOW);
-    analogWrite(lPWM, lMoter);
+    analogWrite(lf, lMoter);
+    analogWrite(lb, 0);
   } else {
-    digitalWrite(lf, LOW);
-    digitalWrite(lb, HIGH);
-    analogWrite(lPWM, abs(lMoter));
+    analogWrite(lf, 0);
+    analogWrite(lb, abs(lMoter));
   }
 
   if(rMoter > 0){
-    digitalWrite(rf, HIGH);
-    digitalWrite(rb, LOW);
-    analogWrite(rPWM, rMoter);
+    analogWrite(rf, rMoter);
+    analogWrite(rb, 0);
   } else {
-    digitalWrite(rf, LOW);
-    digitalWrite(rb, HIGH);
-    analogWrite(rPWM, abs(rMoter));
+    analogWrite(rf, 0);
+    analogWrite(rb, abs(rMoter));
   }
 }
