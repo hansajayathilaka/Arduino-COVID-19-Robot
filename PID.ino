@@ -1,4 +1,4 @@
-float Kp = 0.07;
+float Kp = 0.09;
 float Kd = 0.3;
 int rightMaxSpeed  =  180;
 int leftMaxSpeed   =  180;
@@ -15,13 +15,14 @@ QTRSensorsAnalog qtra((unsigned char[]) {
   A1, A2, A6, A3, A4
 },
 NUM_SENSORS, NUM_SAMPLES_PER_SENSOR, EMITTER_PIN);
-unsigned int sensorValues[NUM_SENSORS];
+
 
 void PID() {
   unsigned int sensors[NUM_SENSORS];
   int position = qtra.readLine(sensors, QTR_EMITTERS_ON , 0);    //, QTR_EMITTERS_ON , 1
   int error = position - 2000;
-  //  Serial.println(error);
+  Serial.print(error);
+  Serial.print('\t');
   for (int i = 0; i < 5; i++) {
     Serial.print(sensors[i]);
     Serial.print('\t');
@@ -37,5 +38,5 @@ void PID() {
   rightMotorSpeed = constrain(rightMotorSpeed, -rightMaxSpeed, rightMaxSpeed);
   leftMotorSpeed = constrain(leftMotorSpeed, -leftMaxSpeed, leftMaxSpeed);
 
-    drive(leftMotorSpeed, rightMotorSpeed);
+  drive(leftMotorSpeed, rightMotorSpeed);
 }

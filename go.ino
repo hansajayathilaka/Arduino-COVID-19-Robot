@@ -1,6 +1,6 @@
-//  s(0)  s(1)  s(2)  {{{ s(3)  s(4)  }}}  s(5)  s(6)  s(7)  \\
-//===========================================================\\
-//                    {{{A}}}     {{{B}}}                    \\
+//  s(0)  s(1)  s(2)  {{{ s(3) }}}  s(4)  s(5)  s(6)  \\
+//====================================================\\
+//                 {{{A}}}    {{{B}}}                 \\
 
 int const goDelay   = 40;     //delay to goto the end of the line
 int const lineDelay = 75;     //delay to cross a line
@@ -20,13 +20,17 @@ void go() {
       error = 1;
     }
 
-    else if ((s(0) == 1) && (s(1) == 1) && (s(2) == 1) && (s(3) == 1) && (s(4) == 1) && (s(7) == 0)) {      // Left detection
+    else if ((s(0) == 1) && (s(1) == 1) && (s(2) == 1) && (s(3) == 1) && (s(6) == 0)) {      // Left detection
       junkDelay = millis();
       drive(130, 130);
       updateVal();
-      while ((s(0) == 1) && (s(1) == 1) && (s(2) == 1) && (s(3) == 1) && (s(7) == 0)) {
+      while ((s(0) == 1) && (s(1) == 1) && (s(2) == 1) && (s(3) == 1) && (s(6) == 0)) {
         updateVal();
       }
+      drive(0, 0);
+      Serial.println(millis() - junkDelay);
+      delay(3000);
+      continue;
       if (millis() - junkDelay > lineDelay) {
         left = 1;
         drive(150, 150);
@@ -47,11 +51,11 @@ void go() {
 
 
 
-    else if ((s(0) == 0) && (s(3) == 1) && (s(4) == 1) && (s(5) == 1) && (s(6) == 1) && (s(7) == 1)) {      // Right detection
+    else if ((s(0) == 0) && (s(3) == 1) && (s(4) == 1) && (s(5) == 1) && (s(6) == 1)) {      // Right detection
       junkDelay = millis();
       drive(130, 130);
       updateVal();
-      while ((s(0) == 0) && (s(3) == 1) && (s(4) == 1) && (s(5) == 1) && (s(6) == 1) && (s(7) == 1)) {
+      while ((s(0) == 0) && (s(3) == 1) && (s(4) == 1) && (s(5) == 1) && (s(6) == 1)) {
         updateVal();
       }
       if (millis() - junkDelay > lineDelay) {
@@ -75,11 +79,11 @@ void go() {
 
 
 
-    else if (((s(0) == 1) || (s(1) == 1)) && ((s(6) == 1) || (s(7) == 1))) {                                          // T detection
+    else if (((s(0) == 1) || (s(1) == 1)) && ((s(5) == 1) || (s(6) == 1))) {                                          // T detection
       junkDelay = millis();
       drive(130, 130);
       updateVal();
-      while (((s(0) == 1) || (s(1) == 1)) && ((s(6) == 1) || (s(7) == 1))) {
+      while (((s(0) == 1) || (s(1) == 1)) && ((s(5) == 1) || (s(6) == 1))) {
         updateVal();
       }
       if (millis() - junkDelay > 40) {

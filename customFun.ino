@@ -3,11 +3,11 @@
 //                    {{{A}}}     {{{B}}}                    \\
 
 void updateVal() {
-  qtraTest.read(sensorValues);
+  qtraTest.readLine(sensorValues, QTR_EMITTERS_ON , 0);
 }
 
 bool s(byte val) {
-  if (sensorValues[val] >= 650)
+  if (sensorValues[val] <= 650)
     return 1;
   else
     return 0;

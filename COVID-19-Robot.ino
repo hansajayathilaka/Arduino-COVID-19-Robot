@@ -10,6 +10,7 @@ QTRSensorsAnalog qtraTest((unsigned char[]) {
   A0, A1, A2, A6, A3, A4, A5
 },
 7, 4, 2);
+unsigned int sensorValues[7];
 
 String path_to_next_destination = "";
 int junctionIndex = 0;
@@ -34,14 +35,22 @@ void setup() {
   Serial.println("Begin....!");
   delay(2000);
   sCalibrate();
-//  atHome();
+  delay(2000);
+  //  atHome();
 }
 
 void loop() {
-  PID();
-//  drive(0, 100);
-//  Serial.println(recieveData());
+  //  PID();
+  //  drive(0, 100);
+  //  Serial.println(recieveData());
   //  go();
+  updateVal();
+  for (int i = 0; i < 7; i++) {
+    //    Serial.print(s(i));
+    Serial.print(s(i));
+    Serial.print('\t');
+  }
+  Serial.println();
   //  path_to_next_destination = createPath(currentPosition, destination);
 
 }
